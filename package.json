@@ -1,0 +1,12 @@
+{
+  "name": "task_1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Sofia Solovyova",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
