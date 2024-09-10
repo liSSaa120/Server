@@ -1,8 +1,30 @@
-const http = require('http');
+const express = require("express");
+const server = express();
 
-let Server = http.createServer((req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-    res.end('<h1>Привет, Октагон!</h1>');
+server.use("/static", function(request, response){
+    response.send({header:"Hello", body:"Octagon NodeJS Test"});
 });
 
-Server.listen(3000, 'localhost');
+server.use("/dynamic", function(request, response){
+      
+    const a = request.query.a;
+    const b = request.query.b;
+    const c = request.query.c;
+
+    if(isNumber(a) && isNumber(b) && isNumber(c)){
+        response.send({header:"Calculated", body:((a * b * c) / 3)});
+    }
+    else{
+        response.send({header:"Error"});
+    };
+});
+
+server.listen(3000, 'localhost');
+
+function isNumber(num){
+    if(num === null || (typeof num === "string" && num.length === 0)){
+        return false;
+    };
+
+    return !isNaN(num);
+};
